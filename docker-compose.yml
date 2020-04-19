@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db_postgres:
+    build:
+        context: ./conf.d/postgres
+    ports:
+      - 5432:5432
+    image: db_postgres
+    container_name: db_postgres
+    #environment:
+      #POSTGRES_USER: andrey
+      #POSTGRES_PASSWORD: qwe123
+      #POSTGRES_DB: report_cards
+
+  adminer:
+    image: adminer
+    #restart: always
+    container_name: adminer
+    ports:
+      - 2987:8080
