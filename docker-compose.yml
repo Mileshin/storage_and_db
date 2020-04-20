@@ -13,6 +13,15 @@ services:
       #POSTGRES_PASSWORD: qwe123
       #POSTGRES_DB: report_cards
 
+  db_mysql:
+    build:
+        context: ./conf.d/mysql
+    ports:
+      - 3306:3306
+    image: db_mysql
+    container_name: db_mysql
+    command: --default-authentication-plugin=mysql_native_password
+
   adminer:
     image: adminer
     #restart: always
