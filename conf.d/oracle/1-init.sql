@@ -6,3 +6,67 @@ CREATE TABLE people (
    dateOfBirth    DATE          NOT NULL,
    placeOfBirth   VARCHAR2(110) NOT NULL
 );
+
+CREATE TABLE workers (
+   idEmployee      NUMBER(6)     PRIMARY KEY,
+   idPerson        NUMBER(6)     NOT NULL,
+   department      VARCHAR2(50)  NOT NULL,
+   position        VARCHAR2(100) NOT NULL,
+   workPeriod      VARCHAR2(50)  NOT NULL,
+   CONSTRAINT fk_people_workers
+   FOREIGN KEY (idPerson)
+    REFERENCES people(id)
+);
+
+CREATE TABLE groups (
+   groupNumber    VARCHAR2(10)   PRIMARY KEY,
+   studyType      VARCHAR2(10)   NOT NULL
+   CONSTRAINT
+      checkType   CHECK (studyType IN ('budget','contracted')),
+   studyForm      VARCHAR2(11)   NOT NULL
+   CONSTRAINT
+      checkForm   CHECK (studyForm IN ('full-time','extramural')),
+   studyProgram   VARCHAR2(70)   NOT NULL,
+   specialty      VARCHAR2(70)   NOT NULL,
+   studyYear      VARCHAR2(70)   NOT NULL
+);
+
+CREATE TABLE students (
+   idStudent       NUMBER(6)     PRIMARY KEY,
+   idPerson        NUMBER(6)     NOT NULL,
+   groupNumber     VARCHAR2(10)  NOT NULL,
+   qualification   VARCHAR2(20)  NOT NULL,
+   CONSTRAINT fk_people_students
+   FOREIGN KEY (idPerson)
+    REFERENCES people(id),
+   CONSTRAINT fk_groups_students
+   FOREIGN KEY (groupNumber)
+    REFERENCES groups(groupNumber)
+);
+
+CREATE TABLE grades (
+   id              NUMBER(6)     PRIMARY KEY,
+   idStudent       NUMBER(6)     NOT NULL,
+   subject         VARCHAR2(70)  NOT NULL,
+   gradeDate       DATE          default sysdate   NOT NULL,
+   grade           FLOAT         CHECK (grade >= 0 and grade <= 100) NOT NULL,
+   letter          CHAR(1)       CHECK (letter in ('A','B','C','D','E'))  NOT NULL,
+   CONSTRAINT fk_students_grades
+   FOREIGN KEY (idStudent)
+    REFERENCES students(idStudent)
+);
+
+CREATE TABLE curriculum (
+   id              NUMBER(6)     PRIMARY KEY,
+   groupNumber     VARCHAR2(10)  NOT NULL,
+   subject         VARCHAR2(10)  NOT NULL,
+   idEmployee      NUMBER(6)     NOT NULL,
+   time            DATE          NOT NULL,
+   classroom       VARCHAR2(10)  NOT NULL,
+   CONSTRAINT fk_groups_curriculum
+   FOREIGN KEY (groupNumber)
+    REFERENCES groups(groupNumber),
+   CONSTRAINT fk_worker_curriculum
+   FOREIGN KEY (idEmployee)
+    REFERENCES workers(idEmployee)
+);
