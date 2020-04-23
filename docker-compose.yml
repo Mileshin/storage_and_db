@@ -21,6 +21,34 @@ services:
     image: db_mysql
     container_name: db_mysql
     command: --default-authentication-plugin=mysql_native_password
+  
+  db_oracle:
+    build:
+        context: ./conf.d/oracle
+    ports:
+      - 1521:1521
+      - 5500:5500
+    image: db_oracle
+    container_name: db_oracle
+
+  mongo:
+    build:
+        context: ./conf.d/mongo
+    #ports:
+    #  - 3306:3306
+    image: db_mongo
+    container_name: db_mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: andrey
+      MONGO_INITDB_ROOT_PASSWORD: qwe123
+      
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 2988:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: andrey
+      ME_CONFIG_MONGODB_ADMINPASSWORD: qwe123
 
   adminer:
     image: adminer

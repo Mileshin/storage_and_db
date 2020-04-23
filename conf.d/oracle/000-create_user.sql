@@ -1,0 +1,6 @@
+alter session set "_ORACLE_SCRIPT"=true;
+create user andrey IDENTIFIED BY  qwe123;
+GRANT CONNECT TO andrey;
+GRANT CONNECT, RESOURCE, DBA TO andrey;
+GRANT ALL PRIVILEGEs TO andrey;
+GRANT UNLIMITED TABLESPACE TO andrey; 
