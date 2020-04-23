@@ -31,15 +31,15 @@ services:
     image: db_oracle
     container_name: db_oracle
 
-  mongo:
+  db_mongo:
     build:
         context: ./conf.d/mongo
-    #ports:
-    #  - 3306:3306
+    ports:
+      - 27017:27017
     image: db_mongo
     container_name: db_mongo
     environment:
-      MONGO_INITDB_ROOT_USERNAME: andrey
+      MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: qwe123
       
   mongo-express:
@@ -47,7 +47,7 @@ services:
     ports:
       - 2988:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: andrey
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: qwe123
 
   adminer:

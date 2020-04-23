@@ -60,4 +60,14 @@ https://nicholasgribanov.name/docker-sozdanie-kontejnera-s-bazoj-dannyx-oracle/
 В общем все очень легко и приятно если все делать по инструкции. Даже легче чем с официальным образом(так быть не должно, но это oracle).
 
 ## MongoDb
-Управлять mongo лучше через mongo-express. Adminer не умеет в mongo.
+Управлять mongo лучше через mongo-express. Adminer не умеет в mongo.  
+Mongo в docker не всегда подружает скрипты, поэтому лучше сделать все в ручную.  
+Зайти в контейнер
+```
+docker exec -ti db_mongo /bin/bash
+```
+подключится к базе
+```
+mongo -u root -p qwe123 --authenticationDatabase admin
+```
+И выполнить все из init.js
