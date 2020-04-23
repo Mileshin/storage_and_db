@@ -22,7 +22,8 @@ CREATE TABLE conference (
 
 CREATE TABLE scienceProject (
    id             int         PRIMARY KEY,
-   name           CHARACTER   VARYING(100)    NOT NULL
+   name           CHARACTER   VARYING(100)    NOT NULL,
+   researchField  CHARACTER   VARYING(100)    NOT NULL
 );
 
 CREATE TABLE edition (
@@ -77,7 +78,7 @@ CREATE TABLE people_conference (
 CREATE TABLE people_publication (
    id              int         PRIMARY KEY,
    idPeople        int         NOT NULL,
-   idPublication    int        NOT NULL,
+   idPublication   int         NOT NULL,
    FOREIGN KEY (idPeople)   
     REFERENCES people (id) 
     ON UPDATE CASCADE 
@@ -91,8 +92,8 @@ CREATE TABLE people_publication (
 CREATE TABLE people_scienceProject (
    id                      int         PRIMARY KEY,
    participationPeriod     CHARACTER   VARYING(30)    NOT NULL,
-   idPeople         int         NOT NULL,
-   idScienceProject int         NOT NULL,
+   idPeople                int         NOT NULL,
+   idScienceProject        int         NOT NULL,
    FOREIGN KEY (idPeople)   
     REFERENCES people (id) 
     ON UPDATE CASCADE 
