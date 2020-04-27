@@ -28,7 +28,7 @@ CREATE TABLE teachers (
 CREATE TABLE curriculum (
    id             int         PRIMARY KEY,
    Subject        CHARACTER   VARYING(30)    NOT NULL,
-   semester       int         CHECK (semester > 0 and semester < 7) NOT NULL,
+   semester       int         CHECK (semester > 0 and semester < 11) NOT NULL,
    lecture        CHARACTER   VARYING(30)    NOT NULL,
    practice       CHARACTER   VARYING(30)    NOT NULL,
    exam           boolean                    NOT NULL
