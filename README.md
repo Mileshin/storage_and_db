@@ -68,11 +68,12 @@ https://nicholasgribanov.name/docker-sozdanie-kontejnera-s-bazoj-dannyx-oracle/
 В общем, все очень легко и приятно, если все делать по инструкции. Даже легче, чем с официальным образом(так быть не должно, но это oracle).
 
 ## MongoDb
-В базе данных dormitories будет 4 коллекции:
+В базе данных dormitories будет 5 коллекций:
 - people
 - rooms
 - dormitories
 - lodger
+- attendance
 
 Управлять mongo лучше через mongo-express. Adminer не умеет в mongo.  
 Mongo в docker не всегда подгружает скрипты, поэтому лучше сделать все вручную.  
