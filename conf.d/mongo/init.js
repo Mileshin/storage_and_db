@@ -47,15 +47,16 @@ db.lodger.insert(
       roomNumber:     "1431-3",
       rebuke:         "No",
       residenceStart: "2015-09-01",
-	  residenceEnd:   "2021-08-31",
-	  paymentAmount:  1500
+      residenceEnd:   "2021-08-31",
+      paymentAmount:  1500
    }
-   
+)
+
 db.attendance.insert(
    {
-	   lodger:        207209,
-	   time:          "2020-22-04 22:20:15",
-	   attendance:    "entered"
+      lodger:        207209,
+      time:          "2020-22-04 22:20:15",
+      attendance:    "entered"
    }	 
 )
 
