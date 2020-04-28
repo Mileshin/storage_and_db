@@ -12,30 +12,31 @@ CREATE TABLE workers (
    idPerson        NUMBER(6)     NOT NULL,
    department      VARCHAR2(50)  NOT NULL,
    position        VARCHAR2(100) NOT NULL,
-   workPeriod      VARCHAR2(50)  NOT NULL,
+   workStart       DATE          NOT NULL,
+   workEnd         DATE,          
    CONSTRAINT fk_people_workers
    FOREIGN KEY (idPerson)
     REFERENCES people(id)
 );
 
 CREATE TABLE groups (
-   groupNumber    VARCHAR2(10)   PRIMARY KEY,
-   studyType      VARCHAR2(10)   NOT NULL
-   CONSTRAINT
-      checkType   CHECK (studyType IN ('budget','contracted')),
-   studyForm      VARCHAR2(11)   NOT NULL
+   groupNumber    VARCHAR2(10)   PRIMARY KEY,  
+   studyForm      VARCHAR2(10)   NOT NULL
    CONSTRAINT
       checkForm   CHECK (studyForm IN ('full-time','extramural')),
    studyProgram   VARCHAR2(70)   NOT NULL,
    specialty      VARCHAR2(70)   NOT NULL,
-   studyYear      VARCHAR2(70)   NOT NULL
+   qualification  VARCHAR2(20)   NOT NULL,
+   studyYear      NUMBER(1)      CHECK (studyYear > 0 and studyYear < 6) NOT NULL
 );
 
 CREATE TABLE students (
    idStudent       NUMBER(6)     PRIMARY KEY,
    idPerson        NUMBER(6)     NOT NULL,
    groupNumber     VARCHAR2(10)  NOT NULL,
-   qualification   VARCHAR2(20)  NOT NULL,
+   studyType       VARCHAR2(10)  NOT NULL,
+   CONSTRAINT
+      checkType    CHECK (studyType IN ('budget','contracted')),
    CONSTRAINT fk_people_students
    FOREIGN KEY (idPerson)
     REFERENCES people(id),
@@ -50,7 +51,7 @@ CREATE TABLE grades (
    subject         VARCHAR2(70)  NOT NULL,
    gradeDate       DATE          default sysdate   NOT NULL,
    grade           FLOAT         CHECK (grade >= 0 and grade <= 100) NOT NULL,
-   letter          CHAR(1)       CHECK (letter in ('A','B','C','D','E'))  NOT NULL,
+   letter          VARCHAR2(6)   CHECK (letter in ('A','B','C','D','E','pass','fail'))  NOT NULL,
    CONSTRAINT fk_students_grades
    FOREIGN KEY (idStudent)
     REFERENCES students(idStudent)

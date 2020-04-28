@@ -31,13 +31,15 @@ CREATE TABLE edition (
    name           CHARACTER   VARYING(30)    NOT NULL,
    volume         CHARACTER   VARYING(30)    NOT NULL,
    location       CHARACTER   VARYING(70)    NOT NULL,
-   type           CHARACTER   VARYING(10)    NOT NULL
+   type           CHARACTER   VARYING(10)    NOT NULL,
+   language       CHARACTER   VARYING(30)    NOT NULL
 );
 
 CREATE TABLE publication (
    id              int         PRIMARY KEY,
    name            CHARACTER   VARYING(50)    NOT NULL,
    publicationDate DATE        NOT NULL,
+   citationIndex   int         NOT NULL,
    idEdition       int         NOT NULL,
    FOREIGN KEY (idEdition)   
     REFERENCES edition (id) 
@@ -47,8 +49,8 @@ CREATE TABLE publication (
 
 CREATE TABLE libraryCard (
    id              int         PRIMARY KEY,
-   pickUpDate      DATETIME    NOT NULL DEFAULT   CURRENT_TIMESTAMP,
-   returnDate      DATETIME,
+   pickUpDate      DATE        NOT NULL DEFAULT   CURRENT_TIMESTAMP,
+   returnDate      DATE,
    idPeople        int         NOT NULL,
    idEdition       int         NOT NULL,
    FOREIGN KEY (idPeople)   
@@ -79,6 +81,7 @@ CREATE TABLE people_publication (
    id              int         PRIMARY KEY,
    idPeople        int         NOT NULL,
    idPublication   int         NOT NULL,
+   mainAuthor      boolean     NOT NULL,
    FOREIGN KEY (idPeople)   
     REFERENCES people (id) 
     ON UPDATE CASCADE 
@@ -91,9 +94,10 @@ CREATE TABLE people_publication (
 
 CREATE TABLE people_scienceProject (
    id                      int         PRIMARY KEY,
-   participationPeriod     CHARACTER   VARYING(30)    NOT NULL,
    idPeople                int         NOT NULL,
    idScienceProject        int         NOT NULL,
+   participationStart      DATE        NOT NULL,
+   participationEnd        DATE,
    FOREIGN KEY (idPeople)   
     REFERENCES people (id) 
     ON UPDATE CASCADE 
