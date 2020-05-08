@@ -1,9 +1,9 @@
 CREATE USER andrey WITH PASSWORD 'qwe123';
 CREATE DATABASE report_cards;
-GRANT ALL PRIVILEGES ON DATABASE report_cards TO andrey;
 ALTER USER andrey VALID UNTIL 'infinity';
-
 \c report_cards
+GRANT ALL PRIVILEGES ON DATABASE TO  andrey;
+GRANT USAGE ON SCHEMA public TO andrey;
 
 CREATE TABLE students (
    id             int         PRIMARY KEY,

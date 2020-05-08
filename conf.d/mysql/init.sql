@@ -49,8 +49,8 @@ CREATE TABLE publication (
 
 CREATE TABLE libraryCard (
    id              int         PRIMARY KEY,
-   pickUpDate      DATE        NOT NULL DEFAULT   CURRENT_TIMESTAMP,
-   returnDate      DATE,
+   pickUpDate      DATETIME     NOT NULL DEFAULT   CURRENT_TIMESTAMP,
+   returnDate      DATETIME,
    idPeople        int         NOT NULL,
    idEdition       int         NOT NULL,
    FOREIGN KEY (idPeople)   
