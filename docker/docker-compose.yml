@@ -8,10 +8,6 @@ services:
       - 5432:5432
     image: db_postgres
     container_name: db_postgres
-    #environment:
-      #POSTGRES_USER: andrey
-      #POSTGRES_PASSWORD: qwe123
-      #POSTGRES_DB: report_cards
 
   db_mysql:
     build:
@@ -21,7 +17,7 @@ services:
     image: db_mysql
     container_name: db_mysql
     command: --default-authentication-plugin=mysql_native_password
-  
+
   db_oracle:
     build:
         context: ./conf.d/oracle
@@ -41,19 +37,25 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: qwe123
-      
+
   mongo-express:
     image: mongo-express
     ports:
       - 2988:8081
+    depends_on:
+      - db_mongo
     container_name: mongo-express
+    links:
+      - db_mongo
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: qwe123
+      ME_CONFIG_MONGODB_SERVER: db_mongo
+      ME_CONFIG_BASICAUTH_USERNAME: andrey
+      ME_CONFIG_BASICAUTH_PASSWORD: qwe123
 
   adminer:
     image: adminer
-    #restart: always
     container_name: adminer
     ports:
       - 2987:8080
