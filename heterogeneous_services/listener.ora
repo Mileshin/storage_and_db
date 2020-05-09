@@ -6,23 +6,21 @@ LISTENER =
   )
 )
 
-mysql_andrey =
-  (DESCRIPTION_LIST =
-    (DESCRIPTION =
-     (ADDRESS = (PROTOCOL = TCP)(HOST = 0.0.0.0)(PORT = 1522))
-      )
-    )
-
 SID_LIST_LISTENER=
-  (SID_LIST =
-    (SID_DESC =
-      #(GLOBAL_DBNAME = ORCLCDB)
-      (ORACLE_HOME = /opt/oracle/product/19c/dbhome_1)
-      (SID_NAME = ORCLCDB)
-      (PROGRAM=/opt/oracle/product/19c/dbhome_1/bin/dg4odbc)
-      (ENV="LD_LIBRARY_PATH=/usr/lib64/:/opt/oracle/product/19c/dbhome_1/lib/")
-    )
+  (SID_LIST=
+      (SID_DESC=
+         (SID_NAME=MySQL)
+         (ORACLE_HOME=/opt/oracle/product/19c/dbhome_1)
+         (PROGRAM=dg4odbc)
+      )
+      (SID_DESC=
+         (SID_NAME=PostgreSQL)
+         (ORACLE_HOME=/opt/oracle/product/19c/dbhome_1)
+         (PROGRAM=dg4odbc)
+      )
   )
+
+
 
 DEDICATED_THROUGH_BROKER_LISTENER=ON
 DIAG_ADR_ENABLED = off

@@ -2,8 +2,9 @@ CREATE USER andrey WITH PASSWORD 'qwe123';
 CREATE DATABASE report_cards;
 ALTER USER andrey VALID UNTIL 'infinity';
 \c report_cards
-GRANT ALL PRIVILEGES ON DATABASE TO  andrey;
 GRANT USAGE ON SCHEMA public TO andrey;
+GRANT ALL PRIVILEGES ON DATABASE report_cards TO  andrey;
+\c report_cards
 
 CREATE TABLE students (
    id             int         PRIMARY KEY,
@@ -52,3 +53,6 @@ $grade_stamp$ LANGUAGE plpgsql;
 
 CREATE TRIGGER grade_stamp BEFORE INSERT OR UPDATE ON grades
     FOR EACH ROW EXECUTE PROCEDURE grade_stamp();
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO andrey;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO andrey;

@@ -5,18 +5,25 @@ ORCLPDB1=
     (CONNECT_DATA =
       (SERVER = DEDICATED)
       (SERVICE_NAME = ORCLPDB1)
-      (SID = GWMYSQLSID)
+      (HS = OK)
+    )
+    )
+
+MySQL =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 0.0.0.0)(PORT = 1521))
+    )
+    (CONNECT_DATA =(SID = MySQL)
     )
     (HS = OK)
   )
-
-mysql_andrey =
+PostgreSQL =
   (DESCRIPTION =
     (ADDRESS_LIST =
-      (ADDRESS = (PROTOCOL = TCP)(HOST = 0.0.0.0)(PORT = 1522))
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 0.0.0.0)(PORT = 1521))
     )
-    (CONNECT_DATA =
-     (SID = ORCLCDB)
+    (CONNECT_DATA =(SID = PostgreSQL)
     )
     (HS = OK)
   )

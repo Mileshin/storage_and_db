@@ -1,0 +1,27 @@
+# This is a sample agent init file that contains the HS parameters that are
+# needed for the Database Gateway for ODBC
+
+#
+# HS init parameters
+#
+HS_FDS_CONNECT_INFO = MySQL
+HS_FDS_TRACE_LEVEL = off
+#HS_FDS_SHAREABLE_NAME = /usr/lib64/libmyodbc5.so
+HS_FDS_SHAREABLE_NAME = /usr/lib64/libodbc.so
+
+HS_FDS_FETCH_ROWS = 1
+HS_FDS_SUPPORT_STATISTICS=FALSE
+HS_LANGUAGE=AMERICAN_AMERICA.WE8MSWIN1252
+#HS_LANGUAGE=american_america.we8iso8859P1
+HS_FDS_TIMESTAMP_MAPPING=DATE
+HS_NLS_NCHAR=UCS2
+#
+# ODBC specific environment variables
+#
+set ODBCINI=/etc/odbc.ini
+set NLS_LANG=AMERICAN_RUSSIA.UTF8
+
+#
+# Environment variables required for the non-Oracle system
+#
+#set <envvar>=<value>

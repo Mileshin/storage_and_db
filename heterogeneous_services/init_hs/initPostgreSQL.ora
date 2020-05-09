@@ -4,7 +4,7 @@
 #
 # HS init parameters
 #
-HS_FDS_CONNECT_INFO = mysqldsn
+HS_FDS_CONNECT_INFO = PostgreSQL
 HS_FDS_TRACE_LEVEL = off
 #HS_FDS_SHAREABLE_NAME = /usr/lib64/libmyodbc5.so
 HS_FDS_SHAREABLE_NAME = /usr/lib64/libodbc.so

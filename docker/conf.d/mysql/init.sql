@@ -1,6 +1,6 @@
 CREATE USER 'andrey'@'%' IDENTIFIED BY 'qwe123';
 GRANT ALL PRIVILEGES ON *.* TO 'andrey'@'%';
-CREATE DATABASE scientific_activity;
+CREATE DATABASE scientific_activity DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 FLUSH PRIVILEGES;
 use scientific_activity;
 
@@ -41,9 +41,9 @@ CREATE TABLE publication (
    publicationDate DATE        NOT NULL,
    citationIndex   int         NOT NULL,
    idEdition       int         NOT NULL,
-   FOREIGN KEY (idEdition)   
-    REFERENCES edition (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idEdition)
+    REFERENCES edition (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
@@ -53,13 +53,13 @@ CREATE TABLE libraryCard (
    returnDate      DATETIME,
    idPeople        int         NOT NULL,
    idEdition       int         NOT NULL,
-   FOREIGN KEY (idPeople)   
-    REFERENCES people (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idPeople)
+    REFERENCES people (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE,
-   FOREIGN KEY (idEdition)   
-    REFERENCES edition (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idEdition)
+    REFERENCES edition (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
@@ -67,13 +67,13 @@ CREATE TABLE people_conference (
    id              int         PRIMARY KEY,
    idPeople        int         NOT NULL,
    idConference    int         NOT NULL,
-   FOREIGN KEY (idPeople)   
-    REFERENCES people (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idPeople)
+    REFERENCES people (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE,
-   FOREIGN KEY (idConference)   
-    REFERENCES conference (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idConference)
+    REFERENCES conference (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
@@ -82,13 +82,13 @@ CREATE TABLE people_publication (
    idPeople        int         NOT NULL,
    idPublication   int         NOT NULL,
    mainAuthor      boolean     NOT NULL,
-   FOREIGN KEY (idPeople)   
-    REFERENCES people (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idPeople)
+    REFERENCES people (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE,
-   FOREIGN KEY (idPublication)   
-    REFERENCES publication (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idPublication)
+    REFERENCES publication (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
@@ -98,12 +98,12 @@ CREATE TABLE people_scienceProject (
    idScienceProject        int         NOT NULL,
    participationStart      DATE        NOT NULL,
    participationEnd        DATE,
-   FOREIGN KEY (idPeople)   
-    REFERENCES people (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idPeople)
+    REFERENCES people (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE,
-   FOREIGN KEY (idScienceProject)   
-    REFERENCES scienceProject (id) 
-    ON UPDATE CASCADE 
+   FOREIGN KEY (idScienceProject)
+    REFERENCES scienceProject (id)
+    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
