@@ -18,9 +18,12 @@ SID_LIST_LISTENER=
          (ORACLE_HOME=/opt/oracle/product/19c/dbhome_1)
          (PROGRAM=dg4odbc)
       )
+      (SID_DESC=
+         (SID_NAME=MongoDB)
+         (ORACLE_HOME=/opt/oracle/product/19c/dbhome_1)
+         (PROGRAM=dg4odbc)
+      )
   )
-
-
 
 DEDICATED_THROUGH_BROKER_LISTENER=ON
 DIAG_ADR_ENABLED = off

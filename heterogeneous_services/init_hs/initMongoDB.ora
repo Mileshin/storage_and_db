@@ -1,0 +1,18 @@
+# This is a sample agent init file that contains the HS parameters that are
+# needed for the Database Gateway for ODBC
+
+#
+# HS init parameters
+#
+HS_FDS_CONNECT_INFO = MongoDB
+HS_FDS_SHAREABLE_NAME = /opt/cdata/cdata-odbc-driver-for-mongodb/lib/libmongodbodbc.x64.so
+#HS_FDS_SHAREABLE_NAME = /usr/lib64/libodbc.so
+
+#HS_FDS_FETCH_ROWS = 1
+#HS_FDS_SUPPORT_STATISTICS=FALSE
+#HS_FDS_TIMESTAMP_MAPPING=DATE
+#HS_NLS_NCHAR=UCS2
+#
+# ODBC specific environment variables
+#
+set ODBCINI=/etc/odbc.ini

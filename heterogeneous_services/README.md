@@ -71,3 +71,15 @@ yum install postgresql-odbc
 ```
 create public database link "report_cards_postgres" connect to "andrey" identified by "qwe123" using 'PostgreSQL';
 ```
+
+### MongoDB
+Можно мспользовать драйвер от CData.  
+Инструкция https://www.cdata.com/kb/tech/mongodb-odbc-oracle-hs.rst  
+
+Можно попытаться сделать через mongosqld.  
+Инструкция https://docs.mongodb.com/bi-connector/master/tutorial/create-system-dsn/
+
+#### Создание ссылки
+```
+create public database link "dormitories_mongodb" connect to "andrey" identified by "qwe123" using 'MongoDB';
+```

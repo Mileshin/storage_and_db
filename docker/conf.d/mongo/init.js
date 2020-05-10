@@ -34,10 +34,27 @@ db.rooms.insert(
    }
 )
 
+db.rooms.insert(
+   {
+      roomNumber:     "1431-3",
+      roomSize:       "3 persons",
+      numLodgers:     1,
+      disinfection:   "2019-12-12",
+      bedbugs:        "FALSE"
+   }
+)
+
 db.dormitories.insert(
    {
       place:          "Vyazemsky 5/7",
       numberOfRooms:  666,
+   }
+)
+
+db.dormitories.insert(
+   {
+      place:          "Lensovet 23A",
+      numberOfRooms:  585
    }
 )
 
@@ -57,7 +74,5 @@ db.attendance.insert(
       lodger:        207209,
       time:          "2020-22-04 22:20:15",
       attendance:    "entered"
-   }	 
+   }
 )
-
-
