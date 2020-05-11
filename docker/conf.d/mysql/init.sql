@@ -9,7 +9,10 @@ CREATE TABLE people (
    FirstName      CHARACTER   VARYING(30)    NOT NULL,
    LastName       CHARACTER   VARYING(30)    NOT NULL,
    Patronymic     CHARACTER   VARYING(30),
-   position       CHARACTER   VARYING(110)   NOT NULL
+   position       CHARACTER   VARYING(110)   NOT NULL,
+   dateOfBirth    DATE        NOT NULL,
+   placeOfBirth   CHARACTER   VARYING(110) NOT NULL,
+   UNIQUE (FirstName, LastName, Patronymic, dateOfBirth, placeOfBirth)
 );
 
 

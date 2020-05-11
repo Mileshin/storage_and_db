@@ -6,24 +6,35 @@ GRANT USAGE ON SCHEMA public TO andrey;
 GRANT ALL PRIVILEGES ON DATABASE report_cards TO  andrey;
 \c report_cards
 
-CREATE TABLE students (
+CREATE TABLE people (
    id             int         PRIMARY KEY,
    FirstName      CHARACTER   VARYING(30)    NOT NULL,
    LastName       CHARACTER   VARYING(30)    NOT NULL,
    Patronymic     CHARACTER   VARYING(30),
+   dateOfBirth    DATE        NOT NULL,
+   placeOfBirth   CHARACTER   VARYING(30)   NOT NULL,
+   UNIQUE (FirstName, LastName, Patronymic, dateOfBirth, placeOfBirth)
+ );
+
+CREATE TABLE students (
+   id             int         PRIMARY KEY,
+   peopleId       int         REFERENCES "people" ("id"),
    university     CHARACTER   VARYING(110)   NOT NULL,
    studyStandart  boolean                    NOT NULL,
    studyForm      boolean                    NOT NULL,
    faculty        CHARACTER   VARYING(110)   NOT NULL,
-   specialty      CHARACTER   VARYING(110)   NOT NULL
+   specialty      CHARACTER   VARYING(110)   NOT NULL,
+   group_num      CHARACTER   VARYING(10)    NOT NULL
 );
 
 CREATE TABLE teachers (
    id             int         PRIMARY KEY,
-   FirstName      CHARACTER   VARYING(30)    NOT NULL,
-   LastName       CHARACTER   VARYING(30)    NOT NULL,
-   Patronymic     CHARACTER   VARYING(30),
-   university     CHARACTER   VARYING(110)   NOT NULL
+   peopleId       int         REFERENCES "people" ("id"),
+   positions      CHARACTER   VARYING(100)   NOT NULL,
+   department     CHARACTER   VARYING(100)   NOT NULL,
+   university     CHARACTER   VARYING(110)   NOT NULL,
+   workStart       DATE          NOT NULL,
+   workEnd         DATE
 );
 
 CREATE TABLE curriculum (
@@ -32,6 +43,7 @@ CREATE TABLE curriculum (
    semester       int         CHECK (semester > 0 and semester < 11) NOT NULL,
    lecture        CHARACTER   VARYING(30)    NOT NULL,
    practice       CHARACTER   VARYING(30)    NOT NULL,
+   group          CHARACTER   VARYING(30)    NOT NULL,
    exam           boolean                    NOT NULL
 );
 

@@ -20,6 +20,8 @@ db.people.insert({
       firstName:      "Andrey",
       lastName:       "Mileshin",
       patronomic:     "Aleksandrovich",
+      dateOfBirth:    "08-03-1997",
+      placeOfBirth:   "Saransk"
       benefit:        "FALSE",
       educationType:  "budget"
 })

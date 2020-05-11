@@ -1,4 +1,5 @@
-CREATE TABLE "ANDREY"."PEOPLE" (
+/* Oracle, Postgres, Mysql, Mongo*/
+CREATE TABLE "EDUCATION"."PEOPLE" (
    id             NUMBER(6)     PRIMARY KEY,
    FirstName      VARCHAR2(30)  NOT NULL,
    LastName       VARCHAR2(30)  NOT NULL,
@@ -8,19 +9,22 @@ CREATE TABLE "ANDREY"."PEOPLE" (
    UNIQUE (FirstName, LastName, patronymic, dateOfBirth, placeOfBirth)
 );
 
-CREATE TABLE "ANDREY"."WORKERS" (
+/*Oracle, Postgres*/
+CREATE TABLE "EDUCATION"."WORKERS" (
    idEmployee      NUMBER(6)     PRIMARY KEY,
    idPerson        NUMBER(6)     NOT NULL,
    department      VARCHAR2(100) NOT NULL,
    position        VARCHAR2(100) NOT NULL,
    workStart       DATE          NOT NULL,
    workEnd         DATE,
+   university      VARCHAR2(110)   NOT NULL,
    CONSTRAINT fk_people_workers
    FOREIGN KEY (idPerson)
-    REFERENCES "ANDREY"."PEOPLE"(id)
+    REFERENCES "EDUCATION"."PEOPLE"(id)
 );
 
-CREATE TABLE "ANDREY"."GROUPS" (
+/*Oracle*/
+CREATE TABLE "EDUCATION"."GROUPS" (
    groupNumber    VARCHAR2(10)   PRIMARY KEY,
    studyProgram   VARCHAR2(70)   NOT NULL,
    specialty      VARCHAR2(70)   NOT NULL,
@@ -28,11 +32,14 @@ CREATE TABLE "ANDREY"."GROUPS" (
    studyYear      NUMBER(1)      CHECK (studyYear > 0 and studyYear < 6) NOT NULL
 );
 
-CREATE TABLE "ANDREY"."STUDENTS" (
+/*Oracle, Postgres*/
+CREATE TABLE "EDUCATION"."STUDENTS" (
    idStudent       NUMBER(6)     PRIMARY KEY,
    idPerson        NUMBER(6)     NOT NULL,
    groupNumber     VARCHAR2(10)  NOT NULL,
    studyType       VARCHAR2(10)  NOT NULL,
+   faculty        CHARACTER   VARYING(110),
+   specialty      CHARACTER   VARYING(110),
    studyForm      VARCHAR2(10)   NOT NULL
    CONSTRAINT
       checkForm   CHECK (studyForm IN ('full-time','extramural')),
@@ -40,13 +47,14 @@ CREATE TABLE "ANDREY"."STUDENTS" (
       checkType    CHECK (studyType IN ('budget','contracted')),
    CONSTRAINT fk_people_students
    FOREIGN KEY (idPerson)
-    REFERENCES "ANDREY"."PEOPLE"(id),
+    REFERENCES "EDUCATION"."PEOPLE"(id),
    CONSTRAINT fk_groups_students
    FOREIGN KEY (groupNumber)
-    REFERENCES "ANDREY"."GROUPS"(groupNumber)
+    REFERENCES "EDUCATION"."GROUPS"(groupNumber)
 );
 
-CREATE TABLE "ANDREY"."GRADES" (
+/*Oracle, Postgres*/
+CREATE TABLE "EDUCATION"."GRADES" (
    id              NUMBER(6)     PRIMARY KEY,
    idStudent       NUMBER(6)     NOT NULL,
    idEmployee      NUMBER(6)     NOT NULL,
@@ -56,23 +64,26 @@ CREATE TABLE "ANDREY"."GRADES" (
    letter          VARCHAR2(6)   CHECK (letter in ('A','B','C','D','E','pass','fail'))  NOT NULL,
    CONSTRAINT fk_students_grades
    FOREIGN KEY (idStudent)
-    REFERENCES "ANDREY"."STUDENTS"(idStudent),
-  CONSTRAINT fk_grades_curriculum
+    REFERENCES "EDUCATION"."STUDENTS"(idStudent),
+   CONSTRAINT fk_grades_curriculum
    FOREIGN KEY (idEmployee)
-     REFERENCES "ANDREY"."WORKERS"(idEmployee)
+    REFERENCES "EDUCATION"."WORKERS"(idEmployee)
 );
 
-CREATE TABLE "ANDREY"."CURRICULM" (
+/*Oracle? postgres*/
+CREATE TABLE "EDUCATION"."CURRICULM" (
    id              NUMBER(6)     PRIMARY KEY,
-   groupNumber     VARCHAR2(10)  NOT NULL,
+   groupNumber     VARCHAR2(10),
    subject         VARCHAR2(10)  NOT NULL,
-   idEmployee      NUMBER(6)     NOT NULL,
+   idEmployee      NUMBER(6),
    time            DATE          NOT NULL,
    classroom       VARCHAR2(10)  NOT NULL,
+   lecture         VARCHAR2(30)  NOT NULL,
+   practice        VARCHAR2(30)  NOT NULL,
    CONSTRAINT fk_groups_curriculum
    FOREIGN KEY (groupNumber)
-    REFERENCES "ANDREY"."GROUPS"(groupNumber),
+    REFERENCES "EDUCATION"."GROUPS"(groupNumber),
    CONSTRAINT fk_worker_curriculum
    FOREIGN KEY (idEmployee)
-    REFERENCES "ANDREY"."WORKERS"(idEmployee)
+    REFERENCES "EDUCATION"."WORKERS"(idEmployee)
 );
