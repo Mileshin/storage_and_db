@@ -61,33 +61,6 @@ db.people.insert({
 	}
 )
 
-db.rooms.insert({
-      roomNumber:     "1101-1",
-      roomSize:       "3 persons",
-      numLodgers:     3,
-      disinfection:   "2019-12-12",
-      bedbugs:        "FALSE"
-   }
-)
-
-db.rooms.insert({
-      roomNumber:     "1221-2",
-      roomSize:       "3 persons",
-      numLodgers:     1,
-      disinfection:   "2019-11-12",
-      bedbugs:        "FALSE"
-   }
-)
-
-db.rooms.insert({
-      roomNumber:     "1323-1",
-      roomSize:       "3 persons",
-      numLodgers:     2,
-      disinfection:   "2019-12-10",
-      bedbugs:        "FALSE"
-   }
-)
-
 db.dormitories.insert({
       place:          "Vyazemsky 5/7",
       numberOfRooms:  666,
@@ -100,8 +73,40 @@ db.dormitories.insert({
    }
 )
 
+db.rooms.insert({
+      dormitories:    "Vyazemsky 5/7",
+      roomNumber:     "1101-1",
+      roomSize:       "3 persons",
+      numLodgers:     3,
+      disinfection:   "2019-12-12",
+      bedbugs:        "FALSE"
+   }
+)
+
+db.rooms.insert({
+      dormitories:    "Vyazemsky 5/7",
+      roomNumber:     "1221-2",
+      roomSize:       "3 persons",
+      numLodgers:     1,
+      disinfection:   "2019-11-12",
+      bedbugs:        "FALSE"
+   }
+)
+
+db.rooms.insert({
+      dormitories:    "Vyazemsky 5/7",
+      roomNumber:     "1323-1",
+      roomSize:       "3 persons",
+      numLodgers:     2,
+      disinfection:   "2019-12-10",
+      bedbugs:        "FALSE"
+   }
+)
+
+
 db.lodger.insert({
       lodger:         0,
+      peopleId:       0,
       roomNumber:     "1101-1",
       rebuke:         "No",
       residenceStart: "2002-09-01",
@@ -112,6 +117,7 @@ db.lodger.insert({
 
 db.lodger.insert({
       lodger:         1,
+      peopleId:       1,
       roomNumber:     "1101-1",
       rebuke:         "No",
       residenceStart: "2002-09-01",
@@ -122,6 +128,7 @@ db.lodger.insert({
 
 db.lodger.insert({
       lodger:         2,
+      peopleId:       2,
       roomNumber:     "1221-2",
       rebuke:         "No",
       residenceStart: "2015-09-01",
@@ -132,6 +139,7 @@ db.lodger.insert({
 
 db.lodger.insert({
       lodger:         3,
+      peopleId:       3,
       roomNumber:     "1323-1",
       rebuke:         "No",
       residenceStart: "2015-09-01",
