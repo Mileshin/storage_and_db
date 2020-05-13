@@ -2,8 +2,9 @@
 Доступ к другим базам данных будет осуществлен через гетерогенные сервисы.  
 Для установки драйверов нужны права root. Чтобы законнектится к контейнеру от root.  
 ```
-docker exe -ti -u 0 db_oracle /bin/bash
+docker exec -ti -u 0 db_oracle /bin/bash
 ```
+Можно скопировать данную дирректорию ```docker cp  ./heterogeneous_services/ db_oracle:/```  и запустить init.sh.  Он должен сделать все что описанно ниже, установки лицензии для MongoDB  и создание ссылок. Это надо сделать вручную.
 
 ## Настройка
 #### Установить нужные драйвера
@@ -22,8 +23,13 @@ isql -v <dsnname> <username> <password>
 ```
 # Mysql
 init_hs/initMySQL.ora -> /opt/oracle/product/19c/dbhome_1/hs/admin/initMySQL.ora
+# initPostgreSQL
+init_hs/initPostgreSQL.ora -> /opt/oracle/product/19c/dbhome_1/hs/admin/initPostgreSQL.ora
+# initMongoDB
+init_hs/initMongoDB.ora -> /opt/oracle/product/19c/dbhome_1/hs/admin/initMongoDB.ora
 ```
 #### LISTENER
+Надо помнить, что в listener.ora отступы критичны.
 ```
 listener.ora - > /opt/oracle/oradata/dbconfig/ORCLCDB/listener.ora
 ```
@@ -33,6 +39,7 @@ lsnrctl reload
 lsnrctl status
 ```
 #### TNSNAMES
+Надо помнить, что в tnsnames.ora отступы критичны.
 ```
 tnsnames.ora -> /opt/oracle/oradata/dbconfig/ORCLCDB/tnsnames.ora
 ```
@@ -40,6 +47,7 @@ tnsnames.ora -> /opt/oracle/oradata/dbconfig/ORCLCDB/tnsnames.ora
 ```
 tnsping MySQL
 tnsping PostgreSQL
+tnsping MongoDB
 ```
 ## Создание ссылок
 ### Mysql
@@ -58,7 +66,10 @@ rpm -ivh --nodeps --noscripts mysql-connector-odbc-8.0.20-1.el7.x86_64.rpm
 
 #### Создание ссылки
 ```
-create public database link "scientific_activity_mysql" connect to "andrey" identified by "qwe123" using 'MySQL';;
+create public database link "scientific_activity_mysql" connect to "andrey" identified by "qwe123" using 'MySQL';
+
+# Проверка
+select * from "edition"@"scientific_activity_mysql";
 ```
 
 ### Postgres
@@ -70,14 +81,31 @@ yum install postgresql-odbc
 #### Создание ссылки
 ```
 create public database link "report_cards_postgres" connect to "andrey" identified by "qwe123" using 'PostgreSQL';
+# проверка
+select * from "teachers"@"report_cards_postgres";
 ```
 
 ### MongoDB
-Можно мспользовать драйвер от CData.  
+##### Можно мспользовать драйвер от CData.  
 Инструкция https://www.cdata.com/kb/tech/mongodb-odbc-oracle-hs.rst  
+Ссылка на скачивание https://www.cdata.com/drivers/mongodb/odbc/
+Потом
+```
+# Копируем в корень контейнера
+docker cp MongoDBODBCDriverforUnix.rpm db_oracle:/~
+# Устанавливаем
+rpm -ivh MongoDBODBCDriverforUnix.rpm
+# регистрируем лицензию
+/opt/cdata/cdata-odbc-driver-for-mongodb/bin/install-license.x64
+```
 
-Можно попытаться сделать через mongosqld.  
+
+##### Можно попытаться сделать через mongosqld.  
 Инструкция https://docs.mongodb.com/bi-connector/master/tutorial/create-system-dsn/
+```
+wget https://info-mongodb-com.s3.amazonaws.com/mongodb-bi/v2/mongodb-bi-linux-x86_64-debian10-v2.13.4.tgz
+tar -zxvf mongodb-bi-linux-x86_64-debian10-v2.13.4.tgz
+```
 
 #### Создание ссылки
 ```

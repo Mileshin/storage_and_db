@@ -1,3 +1,3 @@
 FROM library/postgres
 ENV POSTGRES_PASSWORD admin
-COPY ./init.sql /docker-entrypoint-initdb.d/
+COPY ./000-init.sql /docker-entrypoint-initdb.d/

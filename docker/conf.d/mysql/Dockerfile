@@ -1,3 +1,3 @@
 FROM library/mysql
 ENV MYSQL_ROOT_PASSWORD 'root'
-COPY ./init.sql /docker-entrypoint-initdb.d/
+COPY ./000-init.sql /docker-entrypoint-initdb.d/

@@ -70,7 +70,7 @@ CREATE TABLE "EDUCATION"."GRADES" (
     REFERENCES "EDUCATION"."WORKERS"(idEmployee)
 );
 
-/*Oracle? postgres*/
+/*Oracle, postgres*/
 CREATE TABLE "EDUCATION"."CURRICULM" (
    id              NUMBER(6)     PRIMARY KEY,
    groupNumber     VARCHAR2(10),

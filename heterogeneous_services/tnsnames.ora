@@ -27,7 +27,7 @@ PostgreSQL =
     )
     (HS = OK)
   )
-  MongoDB =
+MongoDB =
     (DESCRIPTION =
       (ADDRESS_LIST =
         (ADDRESS = (PROTOCOL = TCP)(HOST = 0.0.0.0)(PORT = 1521))

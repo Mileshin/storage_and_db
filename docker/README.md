@@ -64,7 +64,8 @@ https://nicholasgribanov.name/docker-sozdanie-kontejnera-s-bazoj-dannyx-oracle/
 
 В любом случае, из-за особенностей oracle автоматически подсунуть ему скрипты не очень-то получается.
 
-Пароль от администратора нужно будет глянуть в логах. `docker logs db_oracle`
+Пароль от администратора нужно будет глянуть в логах. `docker logs db_oracle | grep -e "ORACLE PASSWORD FOR SYS, SYSTEM AND PDBADMIN:"
+`
 
 В общем, все очень легко и приятно, если все делать по инструкции. Даже легче, чем с официальным образом (так быть не должно, но это oracle).
 
