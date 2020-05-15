@@ -18,8 +18,8 @@ CREATE TABLE people (
 
 CREATE TABLE conference (
    id             int         PRIMARY KEY,
-   name           CHARACTER   VARYING(50)    NOT NULL,
-   location       CHARACTER   VARYING(70)    NOT NULL,
+   name           CHARACTER   VARYING(100)    NOT NULL,
+   location       CHARACTER   VARYING(100)    NOT NULL,
    date           DATE        NOT NULL
 );
 
@@ -31,16 +31,16 @@ CREATE TABLE scienceProject (
 
 CREATE TABLE edition (
    id             int         PRIMARY KEY,
-   name           CHARACTER   VARYING(30)    NOT NULL,
-   volume         CHARACTER   VARYING(30)    NOT NULL,
-   location       CHARACTER   VARYING(70)    NOT NULL,
-   type           CHARACTER   VARYING(10)    NOT NULL,
+   name           CHARACTER   VARYING(100)    NOT NULL,
+   volume         CHARACTER   VARYING(100)    NOT NULL,
+   location       CHARACTER   VARYING(100)    NOT NULL,
+   type           CHARACTER   VARYING(100)    NOT NULL,
    language       CHARACTER   VARYING(30)    NOT NULL
 );
 
 CREATE TABLE publication (
    id              int         PRIMARY KEY,
-   name            CHARACTER   VARYING(50)    NOT NULL,
+   name            CHARACTER   VARYING(100)    NOT NULL,
    publicationDate DATE        NOT NULL,
    citationIndex   int         NOT NULL,
    idEdition       int         NOT NULL,

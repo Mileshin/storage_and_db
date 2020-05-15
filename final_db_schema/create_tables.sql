@@ -26,10 +26,10 @@ CREATE TABLE "EDUCATION"."WORKERS" (
 /*Oracle*/
 CREATE TABLE "EDUCATION"."GROUPS" (
    groupNumber    VARCHAR2(10)   PRIMARY KEY,
-   studyProgram   VARCHAR2(70)   NOT NULL,
-   specialty      VARCHAR2(70)   NOT NULL,
-   qualification  VARCHAR2(20)   NOT NULL,
-   studyYear      NUMBER(1)      CHECK (studyYear > 0 and studyYear < 6) NOT NULL
+   studyProgram   VARCHAR2(100)   NOT NULL,
+   specialty      VARCHAR2(100)   NOT NULL,
+   qualification  VARCHAR2(100),
+   studyYear      NUMBER(1)      CHECK (studyYear > 0 and studyYear < 6)
 );
 
 /*Oracle, Postgres*/
@@ -37,10 +37,10 @@ CREATE TABLE "EDUCATION"."STUDENTS" (
    idStudent       NUMBER(6)     PRIMARY KEY,
    idPerson        NUMBER(6)     NOT NULL,
    groupNumber     VARCHAR2(10)  NOT NULL,
-   studyType       VARCHAR2(10)  NOT NULL,
+   studyType       VARCHAR2(10),
    faculty        CHARACTER   VARYING(110),
    specialty      CHARACTER   VARYING(110),
-   studyForm      VARCHAR2(10)   NOT NULL
+   studyForm      VARCHAR2(10)
    CONSTRAINT
       checkForm   CHECK (studyForm IN ('full-time','extramural')),
    CONSTRAINT
@@ -91,8 +91,8 @@ CREATE TABLE "EDUCATION"."CURRICULM" (
 /*Mysql*/
 CREATE TABLE "EDUCATION"."CONFERENCE" (
    id             NUMBER(6)         PRIMARY KEY,
-   name           VARCHAR2(50)      NOT NULL,
-   location       VARCHAR2(70)      NOT NULL,
+   name           VARCHAR2(100)      NOT NULL,
+   location       VARCHAR2(100)      NOT NULL,
    conference_date  DATE              NOT NULL
 );
 
@@ -106,17 +106,17 @@ CREATE TABLE "EDUCATION"."SCIENCEPROJECT" (
 /*Mysql*/
 CREATE TABLE "EDUCATION"."EDITION" (
    id             NUMBER(6)     PRIMARY KEY,
-   name           VARCHAR2(30)  NOT NULL,
-   volume         VARCHAR2(30)  NOT NULL,
-   location       VARCHAR2(70)  NOT NULL,
-   type           VARCHAR2(10)  NOT NULL,
+   name           VARCHAR2(100)  NOT NULL,
+   volume         VARCHAR2(100)  NOT NULL,
+   location       VARCHAR2(100)  NOT NULL,
+   type           VARCHAR2(100)  NOT NULL,
    language       VARCHAR2(30)  NOT NULL
 );
 
 /*Mysql*/
 CREATE TABLE "EDUCATION"."PUBLICATION" (
    id              NUMBER(6)      PRIMARY KEY,
-   name            VARCHAR2(50)   NOT NULL,
+   name            VARCHAR2(100)   NOT NULL,
    publicationDate DATE           NOT NULL,
    citationIndex   NUMBER(6)      NOT NULL,
    idEdition       NUMBER(6)      NOT NULL,

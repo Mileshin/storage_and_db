@@ -129,6 +129,7 @@ db.lodger.insert({
 db.lodger.insert({
       lodger:         2,
       peopleId:       2,
+      dormitories:    "Vyazemsky 5/7",
       roomNumber:     "1221-2",
       rebuke:         "No",
       residenceStart: "2015-09-01",

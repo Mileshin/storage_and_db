@@ -1,0 +1,4 @@
+connect_scripts/data/*
+connect_scripts/*.log
+connect_scripts/*_create.sh
+

@@ -12,7 +12,7 @@ CREATE TABLE people (
    LastName       CHARACTER   VARYING(30)    NOT NULL,
    Patronymic     CHARACTER   VARYING(30),
    dateOfBirth    DATE        NOT NULL,
-   placeOfBirth   CHARACTER   VARYING(30)   NOT NULL,
+   placeOfBirth   CHARACTER   VARYING(100)   NOT NULL,
    UNIQUE (FirstName, LastName, Patronymic, dateOfBirth, placeOfBirth)
  );
 
@@ -41,8 +41,8 @@ CREATE TABLE curriculum (
    id             int         PRIMARY KEY,
    Subject        CHARACTER   VARYING(100)    NOT NULL,
    semester       int         CHECK (semester > 0 and semester < 11) NOT NULL,
-   lecture        CHARACTER   VARYING(30)    NOT NULL,
-   practice       CHARACTER   VARYING(30)    NOT NULL,
+   lecture        CHARACTER   VARYING(100)    NOT NULL,
+   practice       CHARACTER   VARYING(100)    NOT NULL,
    group_num          CHARACTER   VARYING(30)    NOT NULL,
    exam           boolean                    NOT NULL
 );
