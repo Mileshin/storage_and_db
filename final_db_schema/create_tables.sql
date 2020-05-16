@@ -76,10 +76,10 @@ CREATE TABLE "EDUCATION"."CURRICULM" (
    groupNumber     VARCHAR2(10),
    subject         VARCHAR2(100)  NOT NULL,
    idEmployee      NUMBER(6),
-   time            DATE          NOT NULL,
-   classroom       VARCHAR2(10)  NOT NULL,
-   lecture         VARCHAR2(30)  NOT NULL,
-   practice        VARCHAR2(30)  NOT NULL,
+   time            DATE,
+   classroom       VARCHAR2(10),
+   lecture         VARCHAR2(30),
+   practice        VARCHAR2(30),
    CONSTRAINT fk_groups_curriculum
    FOREIGN KEY (groupNumber)
     REFERENCES "EDUCATION"."GROUPS"(groupNumber),
@@ -217,14 +217,15 @@ CREATE TABLE "EDUCATION"."LODGER" (
    REFERENCES "EDUCATION"."PEOPLE"(id) ON DELETE CASCADE,
    CONSTRAINT fk_ROOMS_LODGER
    FOREIGN KEY (dormitories, roomNumber)
-    REFERENCES "EDUCATION"."ROOMS"(dormitories,roomNumber) ON DELETE CASCADE
+    REFERENCES "EDUCATION"."ROOMS"(dormitories) ON DELETE CASCADE
 );
 
 /*MongDB*/
 CREATE TABLE "EDUCATION"."ATTENDANCE" (
-  lodger        NUMBER(6)     PRIMARY KEY,
+  lodger        NUMBER(6),
   time          DATE,
   attendance    VARCHAR2(7) CHECK (attendance IN ('arrived','left')),
+  PRIMARY KEY(lodger,time,attendance),
   CONSTRAINT fk_LODGER_ATTENDANCE
   FOREIGN KEY (lodger)
    REFERENCES "EDUCATION"."LODGER"(lodger) ON DELETE CASCADE
